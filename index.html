@@ -1,34 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Get IP With Error Handling</title>
+    <title>User Info</title>
 </head>
 
 <body>
 
-    <button id="ipButton" onclick="getIP()">
-        Get ip
+    <h2>Name</h2>
+    <input type="text" id="nameInput" placeholder="Name">
+
+    <h2>Age</h2>
+    <input type="number" id="ageInput" placeholder="Age">
+
+    <br><br>
+
+    <button onclick="submitData()">
+        Submit
     </button>
 
     <script>
 
-        function getIP() {
+        function submitData() {
 
-            fetch("https://api.ipify.org/")
+            let name = document.getElementById("nameInput").value;
 
-            .then(response => response.text())
+            let age = document.getElementById("ageInput").value;
 
-            .then(data => {
+            let user = {
 
-                document.getElementById("ipButton").innerHTML = data;
+                name: name,
 
-            })
+                age: age,
 
-            .catch(error => {
+                timestamp: new Date().toLocaleString()
 
-                alert("Error: " + error);
+            };
 
-            });
+            let { name: userName, age: userAge, timestamp } = user;
+
+            alert(
+                "Your name is: " + userName +
+                "\nYour age is: " + userAge +
+                "\nTimestamp: " + timestamp
+            );
 
         }
 

@@ -2,96 +2,43 @@
 <html>
 
 <head>
-    <title>Array Methods Task</title>
+    <title>Digital Clock</title>
 </head>
 
 <body>
 
-    <button onclick="buttonOne()">Button One</button>
-    <button onclick="buttonTwo()">Button Two</button>
-    <button onclick="buttonThree()">Button Three</button>
-    <button onclick="buttonFour()">Button Four</button>
-    <button onclick="buttonFive()">Button Five</button>
+    <h1 id="clock"></h1>
 
     <script>
 
-        function createArray() {
-            let arr = [];
+        function updateClock() {
 
-            for (let i = 0; i <= 100; i++) {
-                arr.push(i);
+            let now = new Date();
+
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+
+            if (hours < 10) {
+                hours = "0" + hours;
             }
 
-            return arr;
-        }
-
-        // BUTTON ONE
-        function buttonOne() {
-
-            let arr = createArray();
-
-            arr = arr.filter(num => num % 3 !== 0);
-
-            console.log(arr);
-        }
-
-        // BUTTON TWO
-        function buttonTwo() {
-
-            let arr = createArray();
-
-            for (let i = 101; i <= 150; i++) {
-                arr.push(i);
+            if (minutes < 10) {
+                minutes = "0" + minutes;
             }
 
-            console.log(arr);
-        }
-
-        // BUTTON THREE
-        function buttonThree() {
-
-            let arr = createArray();
-
-            arr = arr.map(num => num + 3);
-
-            console.log(arr);
-        }
-
-        // BUTTON FOUR
-        function buttonFour() {
-
-            let arr = createArray();
-
-            let newArr = arr.slice(20, 41);
-
-            console.log(newArr);
-        }
-
-        // SHUFFLE FUNCTION
-        function shuffleArray(array) {
-
-            for (let i = array.length - 1; i > 0; i--) {
-
-                let j = Math.floor(Math.random() * (i + 1));
-
-                [array[i], array[j]] = [array[j], array[i]];
+            if (seconds < 10) {
+                seconds = "0" + seconds;
             }
 
+            let time = hours + ":" + minutes + ":" + seconds;
+
+            document.getElementById("clock").innerHTML = time;
         }
 
-        // BUTTON FIVE
-        function buttonFive() {
+        setInterval(updateClock, 1000);
 
-            let arr = createArray();
-
-            shuffleArray(arr);
-
-            console.log("Shuffled Array:", arr);
-
-            arr.sort((a, b) => b - a);
-
-            console.log("Descending Order:", arr);
-        }
+        updateClock();
 
     </script>
 

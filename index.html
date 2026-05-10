@@ -6,7 +6,9 @@
 
 <body>
 
-    <button onclick="getIP()">Get ip</button>
+    <button id="ipButton" onclick="getIP()">
+        Get ip
+    </button>
 
     <script>
 
@@ -17,11 +19,15 @@
             .then(response => response.text())
 
             .then(data => {
-                console.log(data);
+
+                document.getElementById("ipButton").innerHTML = data;
+
             })
 
             .catch(error => {
+
                 console.log(error);
+
             });
 
         }
